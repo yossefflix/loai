@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smart Flows - Portfolio احترافي لأعمال مونتاج الفيديو والموشن جرافيك">
+    <title>Smart Flows | أعمالي في المونتاج</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="logo-icon">🎬</span>
+                <span class="logo-text">Smart<span class="highlight">Flows</span></span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#portfolio">أعمالي</a></li>
+                <li><a href="#about">عني</a></li>
+                <li><a href="#contact">تواصل معي</a></li>
+            </ul>
+            <button class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg">
+            <div class="hero-gradient"></div>
+            <div class="hero-particles"></div>
+        </div>
+        <div class="hero-content">
+            <span class="hero-badge">🎥 Video Editor & Motion Designer</span>
+            <h1 class="hero-title">
+                أحوّل أفكارك إلى
+                <span class="gradient-text">قصص مرئية</span>
+                مذهلة
+            </h1>
+            <p class="hero-description">
+                متخصص في مونتاج الفيديو والموشن جرافيك. أقدم لك محتوى إبداعي يترك أثراً في أذهان جمهورك.
+            </p>
+            <div class="hero-buttons">
+                <a href="#portfolio" class="btn btn-primary">
+                    <span>شاهد أعمالي</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="#contact" class="btn btn-secondary">تواصل معي</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">150+</span>
+                    <span class="stat-label">مشروع مكتمل</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">عميل سعيد</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">5+</span>
+                    <span class="stat-label">سنوات خبرة</span>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>اكتشف المزيد</span>
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🎬 معرض الأعمال</span>
+                <h2 class="section-title">أحدث مشاريعي</h2>
+                <p class="section-description">مجموعة متنوعة من أعمالي في مونتاج الفيديو والموشن جرافيك</p>
+            </div>
+
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">الكل</button>
+                <button class="filter-btn" data-filter="commercial">إعلانات</button>
+                <button class="filter-btn" data-filter="motion">موشن جرافيك</button>
+                <button class="filter-btn" data-filter="social">سوشيال ميديا</button>
+            </div>
+
+            <div id="portfolio-grid" class="portfolio-grid">
+                <!-- Videos will be dynamically loaded here -->
+                <div class="empty-state" id="empty-state">
+                    <div class="empty-icon">📹</div>
+                    <h3>قريباً...</h3>
+                    <p>سيتم إضافة أعمال جديدة قريباً</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <div class="image-frame">
+                        <img src="profile.jpg" alt="صورتي الشخصية" class="profile-photo">
+                        <div class="image-decoration"></div>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <span class="section-badge">👋 عني</span>
+                    <h2 class="section-title">محترف مونتاج الفيديو</h2>
+                    <p class="about-text">
+                        مرحباً! أنا محرر فيديو ومصمم موشن جرافيك محترف. أعمل في هذا المجال منذ أكثر من 5 سنوات، وخلال
+                        هذه الفترة ساعدت العديد من العلامات التجارية والأفراد في إنشاء محتوى مرئي مميز يحقق أهدافهم.
+                    </p>
+                    <p class="about-text">
+                        أستخدم أحدث التقنيات والأدوات لضمان أعلى جودة ممكنة. سواء كنت تحتاج إعلان تجاري، فيديو سوشيال
+                        ميديا، أو موشن جرافيك، أنا هنا لمساعدتك.
+                    </p>
+
+                    <div class="skills">
+                        <h3>مهاراتي</h3>
+                        <div class="skills-grid">
+                            <div class="skill-item">
+                                <div class="skill-icon">🎬</div>
+                                <span>Adobe Premiere Pro</span>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">✨</div>
+                                <span>After Effects</span>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🎨</div>
+                                <span>DaVinci Resolve</span>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🎵</div>
+                                <span>Sound Design</span>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">🎭</div>
+                                <span>Color Grading</span>
+                            </div>
+                            <div class="skill-item">
+                                <div class="skill-icon">📱</div>
+                                <span>Social Media Content</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">💬 تواصل معي</span>
+                <h2 class="section-title">لنعمل معاً</h2>
+                <p class="section-description">هل لديك مشروع؟ تواصل معي وأخبرني عن فكرتك</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <a href="https://wa.me/201003782943" target="_blank" class="contact-card whatsapp-card">
+                        <div class="contact-icon">�</div>
+                        <h3>واتساب</h3>
+                        <p dir="ltr">+20 100 378 2943</p>
+                    </a>
+                    <div class="contact-card">
+                        <div class="contact-icon">�</div>
+                        <h3>البريد الإلكتروني</h3>
+                        <p>yossefflix@gmail.com</p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <h3>الموقع</h3>
+                        <p>القاهرة، مصر</p>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="YouTube">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Instagram">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Twitter">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link" aria-label="LinkedIn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="name">الاسم</label>
+                        <input type="text" id="name" placeholder="أدخل اسمك" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">البريد الإلكتروني</label>
+                        <input type="email" id="email" placeholder="أدخل بريدك الإلكتروني" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">الموضوع</label>
+                        <input type="text" id="subject" placeholder="موضوع الرسالة">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">الرسالة</label>
+                        <textarea id="message" rows="5" placeholder="اكتب رسالتك هنا..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span>إرسال الرسالة</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="#" class="footer-logo">
+                    <span class="logo-icon">🎬</span>
+                    <span class="logo-text">Smart<span class="highlight">Flows</span></span>
+                </a>
+                <p class="footer-text">© 2024 Smart Flows. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="video-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+            <div class="modal-video-container">
+                <video id="modal-video" controls></video>
+            </div>
+            <div class="modal-info">
+                <h3 id="modal-title"></h3>
+                <p id="modal-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-message"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

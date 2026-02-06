@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "إعلان منتج احترافي",
+        "category": "commercial",
+        "description": "إعلان تجاري لمنتج بتصميم عصري وموسيقى مميزة",
+        "videoFile": "videos/sample1.mp4",
+        "youtubeId": "00hb8IVwFRs"
+    },
+    {
+        "id": 2,
+        "title": "موشن جرافيك - شرح تطبيق",
+        "category": "motion",
+        "description": "فيديو موشن جرافيك يشرح كيفية استخدام تطبيق موبايل",
+        "videoFile": "videos/sample2.mp4",
+        "youtubeId": ""
+    },
+    {
+        "id": 3,
+        "title": "ريلز انستجرام",
+        "category": "social",
+        "description": "فيديو قصير مصمم خصيصاً لمنصات السوشيال ميديا",
+        "videoFile": "videos/sample3.mp4",
+        "youtubeId": ""
+    }
+]

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin - Smart Flows</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-page {
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .admin-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-top: 2rem;
+        }
+
+        .admin-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-header p {
+            color: var(--color-text-secondary);
+        }
+
+        .back-link {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            color: var(--color-text-secondary);
+            transition: var(--transition-base);
+            z-index: 100;
+        }
+
+        .back-link:hover {
+            background: var(--color-bg-card-hover);
+            color: var(--color-text-primary);
+        }
+
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-accent-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: var(--color-bg-tertiary);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            color: var(--color-text-primary);
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent-primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .youtube-preview {
+            margin-top: 1rem;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: none;
+        }
+
+        .youtube-preview img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+
+        .videos-list h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .video-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-lg);
+            margin-bottom: 0.5rem;
+        }
+
+        .video-item-thumb {
+            width: 120px;
+            height: 68px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .video-item-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .video-item-info {
+            flex: 1;
+        }
+
+        .video-item-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .video-item-meta {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: var(--glass-bg);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            color: var(--color-accent-primary);
+            margin-left: 0.5rem;
+        }
+
+        .youtube-badge {
+            background: rgba(255, 0, 0, 0.1);
+            color: #ff0000;
+        }
+
+        .delete-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: var(--radius-md);
+            color: #ef4444;
+            cursor: pointer;
+            transition: var(--transition-base);
+            font-size: 0.875rem;
+        }
+
+        .delete-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .success-msg {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        /* Login Screen */
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .login-box {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-xl);
+            padding: 3rem;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .login-box h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-box p {
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 1rem;
+            background: var(--color-bg-tertiary);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-md);
+            color: var(--color-text-primary);
+            text-align: center;
+            font-size: 1.25rem;
+            letter-spacing: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .login-box input:focus {
+            outline: none;
+            border-color: var(--color-accent-primary);
+        }
+
+        .login-error {
+            color: #ef4444;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .video-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .video-item-thumb {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 16/9;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div class="login-screen" id="login-screen">
+        <div class="login-box">
+            <h1>🔐 تسجيل الدخول</h1>
+            <p>أدخل كلمة المرور للوصول للوحة التحكم</p>
+            <input type="password" id="password-input" placeholder="كلمة المرور" autofocus>
+            <p class="login-error" id="login-error">كلمة المرور غير صحيحة</p>
+            <button class="btn btn-primary btn-full" id="login-btn">دخول</button>
+        </div>
+    </div>
+
+    <!-- Admin Content -->
+    <div id="admin-content" style="display: none;">
+        <a href="index.html" class="back-link">← العودة للموقع</a>
+
+        <div class="admin-page">
+            <div class="admin-container">
+                <div class="admin-header">
+                    <h1>🔐 لوحة تحكم Smart Flows</h1>
+                    <p>إضافة وإدارة فيديوهات Portfolio</p>
+                </div>
+
+                <!-- Add YouTube Video Form -->
+                <div class="card">
+                    <h2>🎬 إضافة فيديو YouTube</h2>
+                    <div class="success-msg" id="success-msg">✅ تم إضافة الفيديو بنجاح!</div>
+
+                    <div class="form-group">
+                        <label>رابط أو ID الفيديو من YouTube</label>
+                        <input type="text" id="youtube-input"
+                            placeholder="https://youtube.com/watch?v=xxxxx أو فقط الـ ID">
+                    </div>
+
+                    <div class="youtube-preview" id="youtube-preview">
+                        <img id="preview-img" src="" alt="معاينة">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>عنوان الفيديو</label>
+                            <input type="text" id="video-title" placeholder="عنوان الفيديو">
+                        </div>
+                        <div class="form-group">
+                            <label>التصنيف</label>
+                            <select id="video-category">
+                                <option value="commercial">إعلانات</option>
+                                <option value="motion">موشن جرافيك</option>
+                                <option value="social">سوشيال ميديا</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>وصف الفيديو (اختياري)</label>
+                        <textarea id="video-description" placeholder="وصف مختصر للفيديو"></textarea>
+                    </div>
+
+                    <button class="btn btn-primary btn-full" id="add-video-btn">
+                        ➕ إضافة الفيديو
+                    </button>
+                </div>
+
+                <!-- Videos List -->
+                <div class="card videos-list">
+                    <h2>📋 الفيديوهات الحالية</h2>
+                    <div id="videos-container">جاري التحميل...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_PASSWORD = '872003';
+        const STORAGE_KEY = 'smartflows_videos';
+
+        const categoryLabels = {
+            commercial: 'إعلانات',
+            motion: 'موشن جرافيك',
+            social: 'سوشيال ميديا'
+        };
+
+        // Check if already logged in
+        if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+            showAdminContent();
+        }
+
+        // Login handling
+        document.getElementById('login-btn').addEventListener('click', attemptLogin);
+        document.getElementById('password-input').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') attemptLogin();
+        });
+
+        function attemptLogin() {
+            const password = document.getElementById('password-input').value;
+            if (password === ADMIN_PASSWORD) {
+                sessionStorage.setItem('adminLoggedIn', 'true');
+                showAdminContent();
+            } else {
+                document.getElementById('login-error').style.display = 'block';
+                document.getElementById('password-input').value = '';
+            }
+        }
+
+        function showAdminContent() {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('admin-content').style.display = 'block';
+            loadVideos();
+            setupForm();
+        }
+
+        function setupForm() {
+            const youtubeInput = document.getElementById('youtube-input');
+            const previewDiv = document.getElementById('youtube-preview');
+            const previewImg = document.getElementById('preview-img');
+
+            // YouTube preview on input
+            youtubeInput.addEventListener('input', () => {
+                const youtubeId = extractYouTubeId(youtubeInput.value);
+                if (youtubeId) {
+                    previewImg.src = `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+                    previewDiv.style.display = 'block';
+                } else {
+                    previewDiv.style.display = 'none';
+                }
+            });
+
+            // Add video button
+            document.getElementById('add-video-btn').addEventListener('click', addVideo);
+        }
+
+        function extractYouTubeId(input) {
+            if (!input) return null;
+
+            // If it's already just an ID (11 characters)
+            if (/^[a-zA-Z0-9_-]{11}$/.test(input.trim())) {
+                return input.trim();
+            }
+
+            // Extract from various YouTube URL formats
+            const patterns = [
+                /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+                /youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})/
+            ];
+
+            for (const pattern of patterns) {
+                const match = input.match(pattern);
+                if (match) return match[1];
+            }
+
+            return null;
+        }
+
+        function addVideo() {
+            const youtubeInput = document.getElementById('youtube-input');
+            const titleInput = document.getElementById('video-title');
+            const categorySelect = document.getElementById('video-category');
+            const descriptionInput = document.getElementById('video-description');
+
+            const youtubeId = extractYouTubeId(youtubeInput.value);
+            const title = titleInput.value.trim();
+
+            if (!youtubeId) {
+                alert('يرجى إدخال رابط أو ID يوتيوب صحيح');
+                return;
+            }
+
+            if (!title) {
+                alert('يرجى إدخال عنوان الفيديو');
+                return;
+            }
+
+            // Get existing videos from localStorage
+            const videos = getStoredVideos();
+
+            // Create new video object
+            const newVideo = {
+                id: Date.now(),
+                title: title,
+                category: categorySelect.value,
+                description: descriptionInput.value.trim(),
+                videoFile: '',
+                youtubeId: youtubeId
+            };
+
+            videos.push(newVideo);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
+
+            // Show success message
+            const successMsg = document.getElementById('success-msg');
+            successMsg.style.display = 'block';
+            setTimeout(() => {
+                successMsg.style.display = 'none';
+            }, 3000);
+
+            // Clear form
+            youtubeInput.value = '';
+            titleInput.value = '';
+            descriptionInput.value = '';
+            document.getElementById('youtube-preview').style.display = 'none';
+
+            // Reload videos list
+            loadVideos();
+        }
+
+        function getStoredVideos() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            } catch {
+                return [];
+            }
+        }
+
+        async function loadVideos() {
+            const container = document.getElementById('videos-container');
+
+            try {
+                // Get videos from localStorage
+                const storedVideos = getStoredVideos();
+
+                // Also try to load from videos.json
+                let jsonVideos = [];
+                try {
+                    const response = await fetch('videos.json');
+                    jsonVideos = await response.json();
+                } catch { }
+
+                // Merge videos (stored videos first, then json)
+                const allVideos = [...storedVideos, ...jsonVideos];
+
+                if (allVideos.length === 0) {
+                    container.innerHTML = '<p style="color: var(--color-text-muted); text-align: center; padding: 2rem;">لا توجد فيديوهات بعد. أضف أول فيديو من الأعلى!</p>';
+                    return;
+                }
+
+                container.innerHTML = allVideos.map(video => {
+                    const isYouTube = video.youtubeId && video.youtubeId.length > 0;
+                    const isStored = storedVideos.some(v => v.id === video.id);
+                    const thumbnail = isYouTube
+                        ? `https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg`
+                        : 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 9"><rect fill="%231a1a25" width="16" height="9"/><text x="8" y="5" text-anchor="middle" fill="%236a6a7a" font-size="2">�</text></svg>';
+
+                    return `
+                        <div class="video-item" data-id="${video.id}">
+                            <div class="video-item-thumb">
+                                <img src="${thumbnail}" alt="${video.title}">
+                            </div>
+                            <div class="video-item-info">
+                                <div class="video-item-title">
+                                    ${video.title}
+                                    <span class="category-badge">${categoryLabels[video.category] || video.category}</span>
+                                    ${isYouTube ? '<span class="category-badge youtube-badge">YouTube</span>' : ''}
+                                </div>
+                                <div class="video-item-meta">${video.description || 'بدون وصف'}</div>
+                            </div>
+                            ${isStored ? `<button class="delete-btn" onclick="deleteVideo(${video.id})">🗑 حذف</button>` : ''}
+                        </div>
+                    `;
+                }).join('');
+
+            } catch (error) {
+                container.innerHTML = '<p style="color: #ef4444;">خطأ في تحميل الفيديوهات</p>';
+            }
+        }
+
+        function deleteVideo(id) {
+            if (!confirm('هل أنت متأكد من حذف هذا الفيديو؟')) return;
+
+            const videos = getStoredVideos().filter(v => v.id !== id);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
+            loadVideos();
+        }
+    </script>
+</body>
+
+</html>
