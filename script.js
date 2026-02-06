@@ -2,6 +2,7 @@
 // Supports both local videos, YouTube embeds, and localStorage videos
 
 const STORAGE_KEY = 'smartflows_videos';
+const HIDDEN_KEY = 'smartflows_hidden';
 let videos = [];
 let currentFilter = 'all';
 
@@ -36,6 +37,12 @@ async function loadVideos() {
             storedVideos = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
         } catch { }
 
+        // Get hidden videos list
+        let hiddenVideos = [];
+        try {
+            hiddenVideos = JSON.parse(localStorage.getItem(HIDDEN_KEY)) || [];
+        } catch { }
+
         // Get videos from videos.json
         let jsonVideos = [];
         try {
@@ -45,8 +52,11 @@ async function loadVideos() {
             }
         } catch { }
 
+        // Filter out hidden videos from json
+        const visibleJsonVideos = jsonVideos.filter(v => !hiddenVideos.includes(v.id));
+
         // Merge: localStorage videos first, then JSON videos
-        videos = [...storedVideos, ...jsonVideos];
+        videos = [...storedVideos, ...visibleJsonVideos];
 
     } catch (error) {
         console.log('Error loading videos:', error);

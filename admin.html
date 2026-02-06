@@ -358,6 +358,7 @@
     <script>
         const ADMIN_PASSWORD = '872003';
         const STORAGE_KEY = 'smartflows_videos';
+        const HIDDEN_KEY = 'smartflows_hidden';
 
         const categoryLabels = {
             commercial: 'إعلانات',
@@ -496,12 +497,21 @@
             }
         }
 
+        function getHiddenVideos() {
+            try {
+                return JSON.parse(localStorage.getItem(HIDDEN_KEY)) || [];
+            } catch {
+                return [];
+            }
+        }
+
         async function loadVideos() {
             const container = document.getElementById('videos-container');
 
             try {
                 // Get videos from localStorage
                 const storedVideos = getStoredVideos();
+                const hiddenVideos = getHiddenVideos();
 
                 // Also try to load from videos.json
                 let jsonVideos = [];
@@ -510,8 +520,11 @@
                     jsonVideos = await response.json();
                 } catch { }
 
+                // Filter out hidden videos from json
+                const visibleJsonVideos = jsonVideos.filter(v => !hiddenVideos.includes(v.id));
+
                 // Merge videos (stored videos first, then json)
-                const allVideos = [...storedVideos, ...jsonVideos];
+                const allVideos = [...storedVideos, ...visibleJsonVideos];
 
                 if (allVideos.length === 0) {
                     container.innerHTML = '<p style="color: var(--color-text-muted); text-align: center; padding: 2rem;">لا توجد فيديوهات بعد. أضف أول فيديو من الأعلى!</p>';
@@ -523,7 +536,7 @@
                     const isStored = storedVideos.some(v => v.id === video.id);
                     const thumbnail = isYouTube
                         ? `https://img.youtube.com/vi/${video.youtubeId}/mqdefault.jpg`
-                        : 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 9"><rect fill="%231a1a25" width="16" height="9"/><text x="8" y="5" text-anchor="middle" fill="%236a6a7a" font-size="2">�</text></svg>';
+                        : 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 9"><rect fill="%231a1a25" width="16" height="9"/><text x="8" y="5" text-anchor="middle" fill="%236a6a7a" font-size="2">📹</text></svg>';
 
                     return `
                         <div class="video-item" data-id="${video.id}">
@@ -538,7 +551,7 @@
                                 </div>
                                 <div class="video-item-meta">${video.description || 'بدون وصف'}</div>
                             </div>
-                            ${isStored ? `<button class="delete-btn" onclick="deleteVideo(${video.id})">🗑 حذف</button>` : ''}
+                            <button class="delete-btn" onclick="deleteVideo(${video.id}, ${isStored})">🗑 حذف</button>
                         </div>
                     `;
                 }).join('');
@@ -548,11 +561,20 @@
             }
         }
 
-        function deleteVideo(id) {
+        function deleteVideo(id, isStored) {
             if (!confirm('هل أنت متأكد من حذف هذا الفيديو؟')) return;
 
-            const videos = getStoredVideos().filter(v => v.id !== id);
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
+            if (isStored) {
+                // Delete from localStorage
+                const videos = getStoredVideos().filter(v => v.id !== id);
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(videos));
+            } else {
+                // Hide video from videos.json
+                const hidden = getHiddenVideos();
+                hidden.push(id);
+                localStorage.setItem(HIDDEN_KEY, JSON.stringify(hidden));
+            }
+
             loadVideos();
         }
     </script>
